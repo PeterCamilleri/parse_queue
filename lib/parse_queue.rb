@@ -10,7 +10,7 @@ class ParseQueue
   # The current read point of the queue.
   attr_reader :position
 
-  # The offset of removed items from the queue.
+  # The number of items removed from the queue.
   attr_reader :offset
 
   # Set up the parser queue.

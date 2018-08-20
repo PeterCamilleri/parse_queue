@@ -2,6 +2,7 @@
 
 # A queue for compiler objects between parser layers.
 
+require_relative "parse_queue/exceptions"
 require_relative "parse_queue/version"
 
 class ParseQueue
@@ -25,7 +26,7 @@ class ParseQueue
   def get
     if position >= @buffer.length
       item = @fetch.call
-      fail "Out of data." unless item
+      fail ParseQueueNoData unless item
 
       @buffer << item
     end

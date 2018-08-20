@@ -35,7 +35,7 @@ class ParseQueueTest < Minitest::Test
   end
 
   def test_that_it_detects_underflow
-    assert_raises() { ParseQueue.new.get }
+    assert_raises(ParseQueueNoData) { ParseQueue.new.get }
   end
 
 end

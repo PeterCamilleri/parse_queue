@@ -15,7 +15,4 @@ class ParseQueueTest < Minitest::Test
     refute_nil ::ParseQueue::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
-  end
 end

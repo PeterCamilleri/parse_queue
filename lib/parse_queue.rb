@@ -1,5 +1,9 @@
-require "parse_queue/version"
+# coding: utf-8
 
-module ParseQueue
+# A queue for compiler objects between parser layers.
+
+require_relative "parse_queue/version"
+
+class ParseQueue
   # Your code goes here...
 end

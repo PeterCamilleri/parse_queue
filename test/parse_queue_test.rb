@@ -137,6 +137,29 @@ class ParseQueueTest < Minitest::Test
     assert_equal(2, pq.count)
   end
 
+  def test_shifting_out_old_data
+    pq = ParseQueue.new
+    pq.add((1..3).to_a)
+
+    assert_equal(1, pq.get)
+    pq.shift
+    assert_equal(2, pq.count)
+    assert_equal(1, pq.position)
+    assert_equal(1, pq.offset)
+
+    assert_equal(2, pq.get)
+    pq.shift
+    assert_equal(1, pq.count)
+    assert_equal(2, pq.position)
+    assert_equal(2, pq.offset)
+
+    assert_equal(3, pq.get)
+    pq.shift
+    assert_equal(0, pq.count)
+    assert_equal(3, pq.position)
+    assert_equal(3, pq.offset)
+  end
+
   def test_that_it_detects_underflow
     assert_raises(ParseQueueNoData) { ParseQueue.new.get }
     assert_raises(ParseQueueNoData) { ParseQueue.new.back_up }

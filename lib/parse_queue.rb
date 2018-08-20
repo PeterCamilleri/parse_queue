@@ -22,7 +22,7 @@ class ParseQueue
 
   # How many items are in this parse queue?
   def count
-    @buffer.length - @position
+    @buffer.length - @position + @offset
   end
 
   # Manually add items to the buffer
@@ -32,13 +32,13 @@ class ParseQueue
 
   # Get an item from the buffer.
   def get
-    if position >= @buffer.length
+    if position >= (@buffer.length + @offset)
       item = @fetch.call
       fail ParseQueueNoData unless item
       @buffer << item
     end
 
-    result = @buffer[position]
+    result = @buffer[@position - @offset]
     @position += 1
     result
   end
@@ -47,6 +47,12 @@ class ParseQueue
   def back_up
     @position -= 1
     fail ParseQueueNoData if @position < @offset
+  end
+
+  # Release the buffer items before the current item.
+  def shift
+    @buffer.shift(@position - @offset)
+    @offset = @position
   end
 
   # Try to process some items with roll back on failure.

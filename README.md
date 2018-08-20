@@ -1,8 +1,8 @@
 # ParseQueue
 
-The parse queue is a component in the Ruby compiler toolkit project. Its role
-is to facilitate the movement of language tokens from one compiler phase (like
-the lexical analyzer) to the next one (like the parser). More than just a
+The parse queue is a component in the Ruby Compiler Toolkit Project (RCTP). Its
+role is to facilitate the movement of language tokens from one compiler phase
+(like the lexical analyzer) to the next one (like the parser). More than just a
 simple queue, it supports backing up or falling back to earlier states allowing
 the parser to try other paths in the syntax tree when one path runs into a
 dead end.

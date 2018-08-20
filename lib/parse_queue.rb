@@ -35,7 +35,6 @@ class ParseQueue
     if position >= @buffer.length
       item = @fetch.call
       fail ParseQueueNoData unless item
-
       @buffer << item
     end
 

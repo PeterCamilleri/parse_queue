@@ -5,5 +5,34 @@
 require_relative "parse_queue/version"
 
 class ParseQueue
-  # Your code goes here...
+
+  # The current read point of the queue.
+  attr_reader :position
+
+  # Set up the parser queue.
+  def initialize(&fetch)
+    @fetch = fetch
+    @buffer = []
+    @position = 0
+  end
+
+  # Manually add items to the buffer
+  def add(*items)
+    @buffer += items.flatten
+  end
+
+  # Get an item from the buffer.
+  def get
+    if position >= @buffer.length
+      item = @fetch.call
+      fail "Out of data." unless item
+
+      @buffer << item
+    end
+
+    result = @buffer[position]
+    @position += 1
+    result
+  end
+
 end

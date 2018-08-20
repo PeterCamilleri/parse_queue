@@ -43,4 +43,10 @@ class ParseQueue
     result
   end
 
+  # Try to process some items with roll back on failure.
+  def try(&block)
+    save = @position
+    @position = save unless block.call
+  end
+
 end

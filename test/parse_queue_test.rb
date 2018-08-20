@@ -77,6 +77,45 @@ class ParseQueueTest < Minitest::Test
     assert_equal(3, pq.get)
   end
 
+
+  def test_a_try_with_success
+    pq = ParseQueue.new
+    pq.add((1..3).to_a)
+
+    assert_equal(3, pq.count)
+    assert_equal(0, pq.position)
+    assert_equal(0, pq.offset)
+
+    pq.try {
+      pq.get
+      pq.get
+      true
+    }
+
+    assert_equal(1, pq.count)
+    assert_equal(2, pq.position)
+    assert_equal(0, pq.offset)
+  end
+
+  def test_a_try_with_roll_back
+    pq = ParseQueue.new
+    pq.add((1..3).to_a)
+
+    assert_equal(3, pq.count)
+    assert_equal(0, pq.position)
+    assert_equal(0, pq.offset)
+
+    pq.try {
+      pq.get
+      pq.get
+      false
+    }
+
+    assert_equal(3, pq.count)
+    assert_equal(0, pq.position)
+    assert_equal(0, pq.offset)
+  end
+
   def test_that_it_detects_underflow
     assert_raises(ParseQueueNoData) { ParseQueue.new.get }
   end

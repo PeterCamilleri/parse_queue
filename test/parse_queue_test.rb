@@ -25,12 +25,16 @@ class ParseQueueTest < Minitest::Test
     assert_equal(3, pq.count)
 
     assert_equal(0, pq.position)
+    assert_equal(0, pq.offset)
     assert_equal(1, pq.get)
     assert_equal(1, pq.position)
+    assert_equal(0, pq.offset)
     assert_equal(2, pq.get)
     assert_equal(2, pq.position)
+    assert_equal(0, pq.offset)
     assert_equal(3, pq.get)
     assert_equal(3, pq.position)
+    assert_equal(0, pq.offset)
   end
 
   def test_that_it_acts_like_a_queue_two
@@ -40,12 +44,16 @@ class ParseQueueTest < Minitest::Test
     assert_equal(3, pq.count)
 
     assert_equal(0, pq.position)
+    assert_equal(0, pq.offset)
     assert_equal(1, pq.get)
     assert_equal(1, pq.position)
+    assert_equal(0, pq.offset)
     assert_equal(2, pq.get)
     assert_equal(2, pq.position)
+    assert_equal(0, pq.offset)
     assert_equal(3, pq.get)
     assert_equal(3, pq.position)
+    assert_equal(0, pq.offset)
   end
 
   def test_that_it_auto_fetches

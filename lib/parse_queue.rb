@@ -10,11 +10,14 @@ class ParseQueue
   # The current read point of the queue.
   attr_reader :position
 
+  # The offset of removed items from the queue.
+  attr_reader :offset
+
   # Set up the parser queue.
   def initialize(&fetch)
     @fetch = fetch || lambda { false }
     @buffer = []
-    @position = 0
+    @offset = @position = 0
   end
 
   # How many items are in this parse queue?

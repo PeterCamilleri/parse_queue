@@ -17,6 +17,11 @@ class ParseQueue
     @position = 0
   end
 
+  # How many items are in this parse queue?
+  def count
+    @buffer.length
+  end
+
   # Manually add items to the buffer
   def add(*items)
     @buffer += items.flatten

@@ -18,9 +18,11 @@ class ParseQueueTest < Minitest::Test
 
   def test_that_it_acts_like_a_queue_one
     pq = ParseQueue.new
+    assert_equal(0, pq.count)
     pq.add(1)
     pq.add(2)
     pq.add(3)
+    assert_equal(3, pq.count)
 
     assert_equal(1, pq.get)
     assert_equal(2, pq.get)
@@ -29,7 +31,9 @@ class ParseQueueTest < Minitest::Test
 
   def test_that_it_acts_like_a_queue_two
     pq = ParseQueue.new
+    assert_equal(0, pq.count)
     pq.add((1..3).to_a)
+    assert_equal(3, pq.count)
 
     assert_equal(1, pq.get)
     assert_equal(2, pq.get)

@@ -46,6 +46,7 @@ class ParseQueue
   # Undo the last get.
   def back_up
     @position -= 1
+    fail ParseQueueNoData if @position < @offset
   end
 
   # Try to process some items with roll back on failure.

@@ -43,6 +43,11 @@ class ParseQueue
     result
   end
 
+  # Undo the last get.
+  def back_up
+    @position -= 1
+  end
+
   # Try to process some items with roll back on failure.
   def try(&block)
     save = @position

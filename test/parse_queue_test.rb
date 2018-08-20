@@ -122,6 +122,21 @@ class ParseQueueTest < Minitest::Test
     assert_equal(3, pq.get)
   end
 
+  def test_that_we_can_back_up
+    pq = ParseQueue.new
+    pq.add((1..3).to_a)
+    assert_equal(3, pq.count)
+
+    assert_equal(1, pq.get)
+    assert_equal(2, pq.count)
+
+    pq.back_up
+    assert_equal(3, pq.count)
+
+    assert_equal(1, pq.get)
+    assert_equal(2, pq.count)
+  end
+
   def test_that_it_detects_underflow
     assert_raises(ParseQueueNoData) { ParseQueue.new.get }
   end

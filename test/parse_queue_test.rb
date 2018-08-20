@@ -87,14 +87,16 @@ class ParseQueueTest < Minitest::Test
     assert_equal(0, pq.offset)
 
     pq.try {
-      pq.get
-      pq.get
+      assert_equal(1, pq.get)
+      assert_equal(2, pq.get)
       true
     }
 
     assert_equal(1, pq.count)
     assert_equal(2, pq.position)
     assert_equal(0, pq.offset)
+
+    assert_equal(3, pq.get)
   end
 
   def test_a_try_with_roll_back
@@ -106,14 +108,18 @@ class ParseQueueTest < Minitest::Test
     assert_equal(0, pq.offset)
 
     pq.try {
-      pq.get
-      pq.get
+      assert_equal(1, pq.get)
+      assert_equal(2, pq.get)
       false
     }
 
     assert_equal(3, pq.count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
+
+    assert_equal(1, pq.get)
+    assert_equal(2, pq.get)
+    assert_equal(3, pq.get)
   end
 
   def test_that_it_detects_underflow

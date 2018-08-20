@@ -22,7 +22,7 @@ class ParseQueue
 
   # How many items are in this parse queue?
   def count
-    @buffer.length
+    @buffer.length - @position
   end
 
   # Manually add items to the buffer

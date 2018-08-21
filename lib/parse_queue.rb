@@ -1,5 +1,6 @@
 # coding: utf-8
 
+# The Ruby Compiler Toolkit Project - Parse Queue
 # A queue for compiler objects between parser layers.
 
 require_relative "parse_queue/exceptions"
@@ -10,7 +11,7 @@ class ParseQueue
   # The current read point of the queue.
   attr_reader :position
 
-  # The number of items removed from the queue.
+  # The number of old items removed from the queue.
   attr_reader :offset
 
   # Set up the parser queue.

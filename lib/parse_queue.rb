@@ -46,7 +46,7 @@ class ParseQueue
   # Undo the last get.
   def back_up
     @position -= 1
-    fail ParseQueueNoData if @position < @offset
+    validate_position
   end
 
   # Release any items before the current item.
@@ -59,6 +59,7 @@ class ParseQueue
   def try(&block)
     save = @position
     @position = save unless block.call
+    validate_position
   end
 
   # Try to process some items with shift of success and roll back on failure.
@@ -69,8 +70,13 @@ class ParseQueue
       shift
     else
       @position = save
+      validate_position
     end
   end
 
+  # Is this a valid position?
+  def validate_position
+    fail ParseQueueBackUp if @position < @offset
+  end
 
 end

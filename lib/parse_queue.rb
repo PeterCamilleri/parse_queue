@@ -20,8 +20,8 @@ class ParseQueue
     @offset = @position = 0
   end
 
-  # How many items are in this parse queue?
-  def count
+  # How many unread items are in this parse queue?
+  def unread
     @buffer.length - @position + @offset
   end
 

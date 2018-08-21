@@ -43,6 +43,15 @@ class ParseQueue
     result
   end
 
+  # Get all possible items
+  def read_all
+    loop do
+      item = @fetch.call
+      return unless item
+      @buffer << item
+    end
+  end
+
   # Set the position
   def position=(value)
     @position = value

@@ -68,6 +68,28 @@ class ParseQueueTest < Minitest::Test
     assert_equal(0, pq.offset)
   end
 
+  def test_that_we_can_read_all
+    src = (1..3).each
+
+    pq = ParseQueue.new {
+      begin
+        src.next
+      rescue StopIteration
+        false
+      end
+    }
+
+    pq.read_all
+
+    assert_equal(3, pq.unread)
+    assert_equal(0, pq.position)
+    assert_equal(0, pq.offset)
+
+    assert_equal(1, pq.get)
+    assert_equal(2, pq.get)
+    assert_equal(3, pq.get)
+  end
+
   def test_that_it_auto_fetches
     src = (1..3).each
     pq = ParseQueue.new { src.next }

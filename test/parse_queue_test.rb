@@ -232,6 +232,19 @@ class ParseQueueTest < Minitest::Test
     assert_raises(ParseQueueNoFwd) { ParseQueue.new.get }
     assert_raises(ParseQueueNoRev) { ParseQueue.new.back_up }
 
+    src = (1..2).each
+    pq = ParseQueue.new {
+      begin
+        src.next
+      rescue
+        false
+      end
+    }
+
+    assert_equal(1, pq.get)
+    assert_equal(2, pq.get)
+    assert_raises(ParseQueueNoFwd) { pq.get }
+
     assert_raises(ParseQueueNoRev) {
       pq = ParseQueue.new
       pq.add((1..3).to_a)

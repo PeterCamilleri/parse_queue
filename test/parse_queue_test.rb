@@ -254,6 +254,12 @@ class ParseQueueTest < Minitest::Test
       pq.shift
       pq.position = save
     }
+
+    assert_raises(ParseQueueNoFwd) {
+      pq = ParseQueue.new
+      pq.position = 1
+    }
+
   end
 
 end

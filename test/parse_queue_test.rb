@@ -243,6 +243,17 @@ class ParseQueueTest < Minitest::Test
         false
       }
     }
+
+    assert_raises(ParseQueueNoRev) {
+      pq = ParseQueue.new
+      pq.add((1..3).to_a)
+
+      save = pq.position
+      assert_equal(1, pq.get)
+      assert_equal(2, pq.get)
+      pq.shift
+      pq.position = save
+    }
   end
 
 end

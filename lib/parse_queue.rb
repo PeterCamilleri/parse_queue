@@ -43,6 +43,12 @@ class ParseQueue
     result
   end
 
+  # Set the position
+  def position=(value)
+    @position = value
+    validate_position
+  end
+
   # Undo the last get.
   def back_up
     @position -= 1

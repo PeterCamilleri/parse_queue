@@ -77,6 +77,30 @@ class ParseQueueTest < Minitest::Test
     assert_equal(3, pq.get)
   end
 
+  def test_that_manual_roll_back_works
+    pq = ParseQueue.new
+    pq.add((1..3).to_a)
+
+    assert_equal(3, pq.count)
+    assert_equal(0, pq.position)
+    assert_equal(0, pq.offset)
+
+    save = pq.position
+
+    assert_equal(1, pq.get)
+    assert_equal(2, pq.get)
+    assert_equal(3, pq.get)
+
+    assert_equal(0, pq.count)
+    assert_equal(3, pq.position)
+    assert_equal(0, pq.offset)
+
+    pq.position = save
+
+    assert_equal(3, pq.count)
+    assert_equal(0, pq.position)
+    assert_equal(0, pq.offset)
+  end
 
   def test_a_try_with_success
     pq = ParseQueue.new
@@ -207,7 +231,6 @@ class ParseQueueTest < Minitest::Test
   def test_that_it_detects_errors
     assert_raises(ParseQueueNoFwd) { ParseQueue.new.get }
     assert_raises(ParseQueueNoRev) { ParseQueue.new.back_up }
-
 
     assert_raises(ParseQueueNoRev) {
       pq = ParseQueue.new

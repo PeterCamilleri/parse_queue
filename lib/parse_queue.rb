@@ -49,7 +49,7 @@ class ParseQueue
     fail ParseQueueNoData if @position < @offset
   end
 
-  # Release the buffer items before the current item.
+  # Release any items before the current item.
   def shift
     @buffer.shift(@position - @offset)
     @offset = @position

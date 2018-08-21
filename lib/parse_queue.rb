@@ -61,4 +61,16 @@ class ParseQueue
     @position = save unless block.call
   end
 
+  # Try to process some items with shift of success and roll back on failure.
+  def try!(&block)
+    save = @position
+
+    if block.call
+      shift
+    else
+      @position = save
+    end
+  end
+
+
 end

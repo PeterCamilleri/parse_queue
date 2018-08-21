@@ -6,11 +6,11 @@
 class ParseQueueError < StandardError
 end
 
-# Raised when no more data is available.
-class ParseQueueNoData < ParseQueueError
+# Raised when no more new data is available.
+class ParseQueueNoFwd < ParseQueueError
 end
 
 # Raised when no back up data exists.
-class ParseQueueBackUp < ParseQueueError
+class ParseQueueNoRev < ParseQueueError
 end
 

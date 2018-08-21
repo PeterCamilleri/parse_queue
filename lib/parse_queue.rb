@@ -34,7 +34,7 @@ class ParseQueue
   def get
     if position >= (@buffer.length + @offset)
       item = @fetch.call
-      fail ParseQueueNoData unless item
+      fail ParseQueueNoFwd unless item
       @buffer << item
     end
 
@@ -76,7 +76,7 @@ class ParseQueue
 
   # Is this a valid position?
   def validate_position
-    fail ParseQueueBackUp if @position < @offset
+    fail ParseQueueNoRev if @position < @offset
   end
 
 end

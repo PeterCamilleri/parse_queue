@@ -204,9 +204,9 @@ class ParseQueueTest < Minitest::Test
     assert_equal(3, pq.offset)
   end
 
-  def test_that_it_detects_underflow
-    assert_raises(ParseQueueNoData) { ParseQueue.new.get }
-    assert_raises(ParseQueueBackUp) { ParseQueue.new.back_up }
+  def test_that_it_detects_errors
+    assert_raises(ParseQueueNoFwd) { ParseQueue.new.get }
+    assert_raises(ParseQueueNoRev) { ParseQueue.new.back_up }
   end
 
 end

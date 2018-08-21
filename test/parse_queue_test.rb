@@ -207,6 +207,19 @@ class ParseQueueTest < Minitest::Test
   def test_that_it_detects_errors
     assert_raises(ParseQueueNoFwd) { ParseQueue.new.get }
     assert_raises(ParseQueueNoRev) { ParseQueue.new.back_up }
+
+
+    assert_raises(ParseQueueNoRev) {
+      pq = ParseQueue.new
+      pq.add((1..3).to_a)
+
+      pq.try {
+        assert_equal(1, pq.get)
+        assert_equal(2, pq.get)
+        pq.shift
+        false
+      }
+    }
   end
 
 end

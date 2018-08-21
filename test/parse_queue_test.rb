@@ -236,7 +236,7 @@ class ParseQueueTest < Minitest::Test
     pq = ParseQueue.new {
       begin
         src.next
-      rescue
+      rescue StopIteration
         false
       end
     }

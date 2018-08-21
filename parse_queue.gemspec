@@ -1,4 +1,5 @@
 # coding: utf-8
+
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "parse_queue/version"
@@ -9,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["PeterCamilleri"]
   spec.email         = ["peter.c.camilleri@gmail.com"]
 
-  spec.summary       = "An object queue for connecting parser steps."
-  spec.description   = "An object queue for moving compiler tokens with nestable backtrack capability."
+  spec.summary       = "The RCTP object queue for connecting parser steps."
+  spec.description   = "The RCTP object queue for moving compiler tokens with nestable backtrack capability."
   spec.homepage      = "https://github.com/PeterCamilleri/parse_queue"
   spec.license       = "MIT"
 

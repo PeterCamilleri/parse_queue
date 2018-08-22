@@ -13,7 +13,7 @@ class ParseQueueTest < Minitest::Test
   def test_that_it_has_a_version_number
     refute_nil(::ParseQueue::VERSION)
     assert(::ParseQueue::VERSION.is_a?(String))
-    assert(/\d+\.\d+\.\d+/ =~ ::ParseQueue::VERSION)
+    assert(/^\d+\.\d+\.\d+/ =~ ::ParseQueue::VERSION)
   end
 
   def test_that_it_acts_like_a_queue_one

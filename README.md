@@ -113,7 +113,8 @@ This too can be done manually as shown below:
     pq.position = save_point
   end
 ```
-
+Note that if an attempt is made to fall back to data that has been shifted out,
+a **ParseQueueNoRev** exception is raised.
 
 ## Contributing
 

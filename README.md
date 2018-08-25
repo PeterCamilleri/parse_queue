@@ -120,7 +120,7 @@ a **ParseQueueNoRev** exception is raised.
 
 #### Plan A
 
-1. Fork it ( https://github.com/PeterCamilleri/parse_queue_dup/fork )
+1. Fork it ( https://github.com/PeterCamilleri/parse_queue/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -134,10 +134,10 @@ aspect that could use some TLC or a suggestion or an idea.
 ## License
 
 The gem is available as open source under the terms of the
-[MIT License](http://opensource.org/licenses/MIT).
+[MIT License](./LICENSE.txt).
 
 ## Code of Conduct
 
 Everyone interacting in the ParseQueue project’s codebases, issue trackers,
 chat rooms and mailing lists is expected to follow the
-[code of conduct](https://github.com/PeterCamilleri/parse_queue/blob/master/CODE_OF_CONDUCT.md).
+[code of conduct](./CODE_OF_CONDUCT.md).

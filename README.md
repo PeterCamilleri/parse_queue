@@ -44,6 +44,7 @@ This example above is a method that reads in the named file, creates an
 analyzer on it (see the
 [lexical_analyzer](https://rubygems.org/gems/lexical_analyzer)
 gem for more details) and then uses that as the source for the parse queue.
+The queue is returned for use by the compiler's parser.
 
 Note: If the fetch block is omitted, then items will have to added to the parse
 queue using the add method. The add method accepts single items, multiple items

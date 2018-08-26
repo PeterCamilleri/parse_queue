@@ -52,7 +52,7 @@ class ParseQueue
     result
   end
 
-  # Get all possible items
+  # Fetch all possible items.
   def read_all
     loop do
       item = @fetch.call

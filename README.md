@@ -34,11 +34,20 @@ When creating a parse queue, an optional block parameter is passed in. This is
 called whenever more queue items are required. For example:
 
 ```ruby
-  pq = ParseQueue.new { lex.next }
+def open_file_tokenized(name)
+  txt = IO.readlines(name, nil)[0]
+  lex = LexicalAnalayzer.new(text: txt, rules: LEXICAL_RULES)
+  ParseQueue.new { lex.get }
+end
 ```
-If this block is omitted, then items will have to added to the parse queue
-using the add method. The add method accepts single items, multiple items or
-an array of items.
+This example above is a method that reads in the named file, creates an
+analyzer on it (see the
+[lexical_analyzer](https://rubygems.org/gems/lexical_analyzer)
+gem for more details) and then uses that as the source for the parse queue.
+
+Note: If the fetch block is omitted, then items will have to added to the parse
+queue using the add method. The add method accepts single items, multiple items
+or an array of items.
 
 #### Getting a queued item:
 

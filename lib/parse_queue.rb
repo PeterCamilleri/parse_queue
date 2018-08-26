@@ -56,7 +56,12 @@ class ParseQueue
   def read_all
     loop do
       item = @fetch.call
-      return unless item
+
+      unless item
+        @fetch = DFB
+        return
+      end
+
       @buffer << item
     end
   end

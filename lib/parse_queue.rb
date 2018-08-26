@@ -14,9 +14,12 @@ class ParseQueue
   # The number of old items removed from the queue.
   attr_reader :offset
 
+  #The default fetch block
+  DFB = Proc.new { false }
+
   # Set up the parser queue.
   def initialize(&fetch)
-    @fetch = fetch || lambda { false }
+    @fetch = fetch || DFB
     @buffer = []
     @offset = @position = 0
   end
@@ -35,7 +38,12 @@ class ParseQueue
   def get
     if @position >= (@buffer.length + @offset)
       item = @fetch.call
-      fail ParseQueueNoFwd unless item
+
+      unless item
+        @fetch = DFB
+        fail ParseQueueNoFwd
+      end
+
       @buffer << item
     end
 

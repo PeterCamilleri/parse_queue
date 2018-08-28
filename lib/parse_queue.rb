@@ -88,10 +88,7 @@ class ParseQueue
   def try(&block)
     save = @position
 
-    unless (result = block.call)
-      @position = save
-      validate_position
-    end
+    self.position = save unless (result = block.call)
 
     result
   end

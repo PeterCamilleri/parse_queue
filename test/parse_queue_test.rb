@@ -34,21 +34,25 @@ class ParseQueueTest < Minitest::Test
     pq.fetch_all
 
     assert_equal(3, pq.fwd_count)
+    assert_equal(0, pq.rev_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
     assert_equal(1, pq.get)
     assert_equal(2, pq.fwd_count)
+    assert_equal(1, pq.rev_count)
     assert_equal(1, pq.position)
     assert_equal(0, pq.offset)
 
     assert_equal(2, pq.get)
     assert_equal(1, pq.fwd_count)
+    assert_equal(2, pq.rev_count)
     assert_equal(2, pq.position)
     assert_equal(0, pq.offset)
 
     assert_equal(3, pq.get)
     assert_equal(0, pq.fwd_count)
+    assert_equal(3, pq.rev_count)
     assert_equal(3, pq.position)
     assert_equal(0, pq.offset)
   end

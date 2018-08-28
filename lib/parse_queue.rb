@@ -29,6 +29,11 @@ class ParseQueue
     index_limit - @position
   end
 
+  # How many already read items are still in this parse queue?
+  def rev_count
+    @position - @offset
+  end
+
   # Get an item from the buffer.
   def get
     if @position >= index_limit
@@ -42,7 +47,7 @@ class ParseQueue
       @buffer << item
     end
 
-    result = @buffer[@position - @offset]
+    result = @buffer[rev_count]
     @position += 1
     result
   end
@@ -75,7 +80,7 @@ class ParseQueue
 
   # Release any items before the current item.
   def shift
-    @buffer.shift(@position - @offset)
+    @buffer.shift(rev_count)
     @offset = @position
   end
 

@@ -196,7 +196,7 @@ class ParseQueueTest < Minitest::Test
     assert_equal(1, pq.get)
     assert_equal(2, pq.fwd_count)
 
-    pq.back_up
+    pq.unget
     assert_equal(3, pq.fwd_count)
 
     assert_equal(1, pq.get)
@@ -228,7 +228,7 @@ class ParseQueueTest < Minitest::Test
 
   def test_that_it_detects_errors
     assert_raises(ParseQueueNoFwd) { ParseQueue.new.get }
-    assert_raises(ParseQueueNoRev) { ParseQueue.new.back_up }
+    assert_raises(ParseQueueNoRev) { ParseQueue.new.unget }
 
     pq = prep_queue
 

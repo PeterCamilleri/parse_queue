@@ -68,8 +68,8 @@ class ParseQueue
   end
 
   # Undo the last get.
-  def back_up
-    @position -= 1
+  def unget(count=1)
+    @position -= count
     validate_position
   end
 

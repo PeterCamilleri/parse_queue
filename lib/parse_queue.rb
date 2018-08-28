@@ -86,7 +86,7 @@ class ParseQueue
     validate_position
   end
 
-  # Try to process some items with shift of success and roll back on failure.
+  # Process some items with a shift on success and a roll back on failure.
   def try!(&block)
     save = @position
 
@@ -98,7 +98,7 @@ class ParseQueue
     end
   end
 
-  private  # The following are not for external consumption.
+private
 
   # Is this a valid position?
   def validate_position

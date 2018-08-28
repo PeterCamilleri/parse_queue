@@ -87,21 +87,18 @@ class ParseQueue
   # Try to process some items with roll back on failure.
   def try(&block)
     save = @position
-    @position = save unless (result = block.call)
-    validate_position
+
+    unless (result = block.call)
+      @position = save
+      validate_position
+    end
+
     result
   end
 
   # Process some items with a shift on success and a roll back on failure.
   def try!(&block)
-    save = @position
-
-    if (result = block.call)
-      shift
-    else
-      @position = save
-      validate_position
-    end
+    shift if (result = try(&block))
 
     result
   end

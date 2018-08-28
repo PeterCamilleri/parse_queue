@@ -10,6 +10,7 @@ class ParseQueueTest < Minitest::Test
   #Track mini-test progress.
   include MinitestVisible
 
+  # Create a parse queue filled with the items: 1, 2, 3.
   def prep_queue
     src = (1..3).each
 

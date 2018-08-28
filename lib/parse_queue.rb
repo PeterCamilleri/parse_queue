@@ -25,7 +25,7 @@ class ParseQueue
   end
 
   # How many unread items are in this parse queue?
-  def unread
+  def fwd_count
     index_limit - @position
   end
 

@@ -30,25 +30,25 @@ class ParseQueueTest < Minitest::Test
 
   def test_that_it_acts_like_a_queue
     pq = prep_queue
-    assert_equal(0, pq.unread)
+    assert_equal(0, pq.fwd_count)
     pq.read_all
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
     assert_equal(1, pq.get)
-    assert_equal(2, pq.unread)
+    assert_equal(2, pq.fwd_count)
     assert_equal(1, pq.position)
     assert_equal(0, pq.offset)
 
     assert_equal(2, pq.get)
-    assert_equal(1, pq.unread)
+    assert_equal(1, pq.fwd_count)
     assert_equal(2, pq.position)
     assert_equal(0, pq.offset)
 
     assert_equal(3, pq.get)
-    assert_equal(0, pq.unread)
+    assert_equal(0, pq.fwd_count)
     assert_equal(3, pq.position)
     assert_equal(0, pq.offset)
   end
@@ -57,7 +57,7 @@ class ParseQueueTest < Minitest::Test
     pq = prep_queue
     pq.read_all
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
@@ -79,7 +79,7 @@ class ParseQueueTest < Minitest::Test
     pq = prep_queue
     pq.read_all
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
@@ -89,13 +89,13 @@ class ParseQueueTest < Minitest::Test
     assert_equal(2, pq.get)
     assert_equal(3, pq.get)
 
-    assert_equal(0, pq.unread)
+    assert_equal(0, pq.fwd_count)
     assert_equal(3, pq.position)
     assert_equal(0, pq.offset)
 
     pq.position = save
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
   end
@@ -104,7 +104,7 @@ class ParseQueueTest < Minitest::Test
     pq = prep_queue
     pq.read_all
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
@@ -114,7 +114,7 @@ class ParseQueueTest < Minitest::Test
       true
     }
 
-    assert_equal(1, pq.unread)
+    assert_equal(1, pq.fwd_count)
     assert_equal(2, pq.position)
     assert_equal(0, pq.offset)
 
@@ -125,7 +125,7 @@ class ParseQueueTest < Minitest::Test
     pq = prep_queue
     pq.read_all
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
@@ -135,7 +135,7 @@ class ParseQueueTest < Minitest::Test
       true
     }
 
-    assert_equal(1, pq.unread)
+    assert_equal(1, pq.fwd_count)
     assert_equal(2, pq.position)
     assert_equal(2, pq.offset)
 
@@ -146,7 +146,7 @@ class ParseQueueTest < Minitest::Test
     pq = prep_queue
     pq.read_all
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
@@ -156,7 +156,7 @@ class ParseQueueTest < Minitest::Test
       false
     }
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
@@ -169,7 +169,7 @@ class ParseQueueTest < Minitest::Test
     pq = prep_queue
     pq.read_all
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
@@ -179,7 +179,7 @@ class ParseQueueTest < Minitest::Test
       false
     }
 
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
     assert_equal(0, pq.offset)
 
@@ -191,16 +191,16 @@ class ParseQueueTest < Minitest::Test
   def test_that_we_can_back_up
     pq = prep_queue
     pq.read_all
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
 
     assert_equal(1, pq.get)
-    assert_equal(2, pq.unread)
+    assert_equal(2, pq.fwd_count)
 
     pq.back_up
-    assert_equal(3, pq.unread)
+    assert_equal(3, pq.fwd_count)
 
     assert_equal(1, pq.get)
-    assert_equal(2, pq.unread)
+    assert_equal(2, pq.fwd_count)
   end
 
   def test_shifting_out_old_data
@@ -209,19 +209,19 @@ class ParseQueueTest < Minitest::Test
 
     assert_equal(1, pq.get)
     pq.shift
-    assert_equal(2, pq.unread)
+    assert_equal(2, pq.fwd_count)
     assert_equal(1, pq.position)
     assert_equal(1, pq.offset)
 
     assert_equal(2, pq.get)
     pq.shift
-    assert_equal(1, pq.unread)
+    assert_equal(1, pq.fwd_count)
     assert_equal(2, pq.position)
     assert_equal(2, pq.offset)
 
     assert_equal(3, pq.get)
     pq.shift
-    assert_equal(0, pq.unread)
+    assert_equal(0, pq.fwd_count)
     assert_equal(3, pq.position)
     assert_equal(3, pq.offset)
   end

@@ -26,17 +26,12 @@ class ParseQueue
 
   # How many unread items are in this parse queue?
   def unread
-    @buffer.length - @position + @offset
-  end
-
-  # Manually add items to the buffer
-  def add(*items)
-    @buffer += items.flatten
+    index_limit - @position
   end
 
   # Get an item from the buffer.
   def get
-    if @position >= (@buffer.length + @offset)
+    if @position >= index_limit
       item = @fetch.call
 
       unless item
@@ -103,10 +98,17 @@ class ParseQueue
     end
   end
 
+  private  # The following are not for external consumption.
+
   # Is this a valid position?
   def validate_position
     fail ParseQueueNoRev if @position < @offset
-    fail ParseQueueNoFwd if @position >= (@buffer.length + @offset)
+    fail ParseQueueNoFwd if @position >= index_limit
+  end
+
+  # The first index past the end of the array
+  def index_limit
+    @buffer.length + @offset
   end
 
 end

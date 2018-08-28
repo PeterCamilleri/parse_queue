@@ -31,7 +31,7 @@ class ParseQueueTest < Minitest::Test
   def test_that_it_acts_like_a_queue
     pq = prep_queue
     assert_equal(0, pq.fwd_count)
-    pq.read_all
+    pq.fetch_all
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
@@ -53,9 +53,9 @@ class ParseQueueTest < Minitest::Test
     assert_equal(0, pq.offset)
   end
 
-  def test_that_we_can_read_all
+  def test_that_we_can_fetch_all
     pq = prep_queue
-    pq.read_all
+    pq.fetch_all
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
@@ -77,7 +77,7 @@ class ParseQueueTest < Minitest::Test
 
   def test_that_manual_roll_back_works
     pq = prep_queue
-    pq.read_all
+    pq.fetch_all
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
@@ -102,7 +102,7 @@ class ParseQueueTest < Minitest::Test
 
   def test_a_try_with_success
     pq = prep_queue
-    pq.read_all
+    pq.fetch_all
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
@@ -123,7 +123,7 @@ class ParseQueueTest < Minitest::Test
 
   def test_a_try_bang_with_success
     pq = prep_queue
-    pq.read_all
+    pq.fetch_all
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
@@ -144,7 +144,7 @@ class ParseQueueTest < Minitest::Test
 
   def test_a_try_with_roll_back
     pq = prep_queue
-    pq.read_all
+    pq.fetch_all
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
@@ -167,7 +167,7 @@ class ParseQueueTest < Minitest::Test
 
   def test_a_try_bang_with_roll_back
     pq = prep_queue
-    pq.read_all
+    pq.fetch_all
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
@@ -190,7 +190,7 @@ class ParseQueueTest < Minitest::Test
 
   def test_that_we_can_back_up
     pq = prep_queue
-    pq.read_all
+    pq.fetch_all
     assert_equal(3, pq.fwd_count)
 
     assert_equal(1, pq.get)
@@ -205,7 +205,7 @@ class ParseQueueTest < Minitest::Test
 
   def test_shifting_out_old_data
     pq = prep_queue
-    pq.read_all
+    pq.fetch_all
 
     assert_equal(1, pq.get)
     pq.shift

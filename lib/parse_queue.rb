@@ -1,5 +1,3 @@
-# coding: utf-8
-
 # The Ruby Compiler Toolkit Project - Parse Queue
 # A queue for compiler objects between parser layers.
 
@@ -19,7 +17,7 @@ class ParseQueue
 
   # Set up the parser queue.
   def initialize(&fetch)
-    @fetch = fetch || DFB
+    @fetch  = fetch || DFB
     @buffer = []
     @offset = @position = 0
   end
@@ -87,16 +85,13 @@ class ParseQueue
   # Try to process some items with roll back on failure.
   def try(&block)
     save = @position
-
     self.position = save unless (result = block.call)
-
     result
   end
 
   # Process some items with a shift on success and a roll back on failure.
   def try!(&block)
     shift if (result = try(&block))
-
     result
   end
 
@@ -112,5 +107,4 @@ private
   def index_limit
     @buffer.length + @offset
   end
-
 end

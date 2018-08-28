@@ -1,5 +1,3 @@
-# coding: utf-8
-
 require_relative '../lib/parse_queue'
 gem              'minitest'
 require          'minitest/autorun'

@@ -28,37 +28,10 @@ class ParseQueueTest < Minitest::Test
     assert(/\A\d+\.\d+\.\d+/ =~ ::ParseQueue::VERSION)
   end
 
-  def nottest_that_it_acts_like_a_queue_one
-    pq = ParseQueue.new
+  def test_that_it_acts_like_a_queue
+    pq = prep_queue
     assert_equal(0, pq.unread)
-    pq.add(1)
-    pq.add(2)
-    pq.add(3)
-
-    assert_equal(3, pq.unread)
-    assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
-
-    assert_equal(1, pq.get)
-    assert_equal(2, pq.unread)
-    assert_equal(1, pq.position)
-    assert_equal(0, pq.offset)
-
-    assert_equal(2, pq.get)
-    assert_equal(1, pq.unread)
-    assert_equal(2, pq.position)
-    assert_equal(0, pq.offset)
-
-    assert_equal(3, pq.get)
-    assert_equal(0, pq.unread)
-    assert_equal(3, pq.position)
-    assert_equal(0, pq.offset)
-  end
-
-  def nottest_that_it_acts_like_a_queue_two
-    pq = ParseQueue.new
-    assert_equal(0, pq.unread)
-    pq.add((1..3).to_a)
+    pq.read_all
 
     assert_equal(3, pq.unread)
     assert_equal(0, pq.position)

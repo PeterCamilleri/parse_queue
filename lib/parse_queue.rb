@@ -9,9 +9,6 @@ class ParseQueue
   # The current read point of the queue.
   attr_reader :position
 
-  # The number of old items removed from the queue.
-  attr_reader :offset
-
   #The default fetch block
   DFB = Proc.new { false }
 

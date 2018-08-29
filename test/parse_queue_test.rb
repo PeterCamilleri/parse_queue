@@ -35,25 +35,21 @@ class ParseQueueTest < Minitest::Test
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.rev_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     assert_equal(1, pq.get)
     assert_equal(2, pq.fwd_count)
     assert_equal(1, pq.rev_count)
     assert_equal(1, pq.position)
-    assert_equal(0, pq.offset)
 
     assert_equal(2, pq.get)
     assert_equal(1, pq.fwd_count)
     assert_equal(2, pq.rev_count)
     assert_equal(2, pq.position)
-    assert_equal(0, pq.offset)
 
     assert_equal(3, pq.get)
     assert_equal(0, pq.fwd_count)
     assert_equal(3, pq.rev_count)
     assert_equal(3, pq.position)
-    assert_equal(0, pq.offset)
   end
 
   def test_that_we_can_fetch_all
@@ -62,7 +58,6 @@ class ParseQueueTest < Minitest::Test
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     assert_equal(1, pq.get)
     assert_equal(2, pq.get)
@@ -84,7 +79,6 @@ class ParseQueueTest < Minitest::Test
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     save = pq.position
 
@@ -94,13 +88,11 @@ class ParseQueueTest < Minitest::Test
 
     assert_equal(0, pq.fwd_count)
     assert_equal(3, pq.position)
-    assert_equal(0, pq.offset)
 
     pq.position = save
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
   end
 
   def test_a_try_with_success
@@ -109,7 +101,6 @@ class ParseQueueTest < Minitest::Test
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     result = pq.try {
       assert_equal(1, pq.get)
@@ -120,7 +111,6 @@ class ParseQueueTest < Minitest::Test
     assert(result)
     assert_equal(1, pq.fwd_count)
     assert_equal(2, pq.position)
-    assert_equal(0, pq.offset)
 
     assert_equal(3, pq.get)
   end
@@ -131,7 +121,6 @@ class ParseQueueTest < Minitest::Test
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     result = pq.try! {
       assert_equal(1, pq.get)
@@ -142,7 +131,6 @@ class ParseQueueTest < Minitest::Test
     assert(result)
     assert_equal(1, pq.fwd_count)
     assert_equal(2, pq.position)
-    assert_equal(2, pq.offset)
 
     assert_equal(3, pq.get)
   end
@@ -153,7 +141,6 @@ class ParseQueueTest < Minitest::Test
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     result = pq.try {
       assert_equal(1, pq.get)
@@ -164,7 +151,6 @@ class ParseQueueTest < Minitest::Test
     refute(result)
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     assert_equal(1, pq.get)
     assert_equal(2, pq.get)
@@ -177,7 +163,6 @@ class ParseQueueTest < Minitest::Test
 
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     result = pq.try! {
       assert_equal(1, pq.get)
@@ -188,7 +173,6 @@ class ParseQueueTest < Minitest::Test
     refute(result)
     assert_equal(3, pq.fwd_count)
     assert_equal(0, pq.position)
-    assert_equal(0, pq.offset)
 
     assert_equal(1, pq.get)
     assert_equal(2, pq.get)
@@ -218,19 +202,16 @@ class ParseQueueTest < Minitest::Test
     pq.shift
     assert_equal(2, pq.fwd_count)
     assert_equal(1, pq.position)
-    assert_equal(1, pq.offset)
 
     assert_equal(2, pq.get)
     pq.shift
     assert_equal(1, pq.fwd_count)
     assert_equal(2, pq.position)
-    assert_equal(2, pq.offset)
 
     assert_equal(3, pq.get)
     pq.shift
     assert_equal(0, pq.fwd_count)
     assert_equal(3, pq.position)
-    assert_equal(3, pq.offset)
   end
 
   def test_that_it_detects_errors

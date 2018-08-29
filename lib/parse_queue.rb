@@ -31,7 +31,7 @@ class ParseQueue
 
   # Get an item from the buffer.
   def get
-    if @position >= index_limit
+    if @position == index_limit
       item = @fetch.call
 
       unless item

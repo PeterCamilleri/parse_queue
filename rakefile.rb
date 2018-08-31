@@ -8,3 +8,9 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :default => :test
+
+desc "What version of parse queue is this?"
+task :vers do |t|
+  puts
+  puts "parse_queue version = #{ParseQueue::VERSION}"
+end

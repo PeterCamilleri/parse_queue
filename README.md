@@ -46,9 +46,9 @@ analyzer on it (see the
 gem for more details) and then uses that as the source for the parse queue.
 The queue is returned for use by the compiler's parser.
 
-Note: If the fetch block is omitted, then items will have to added to the parse
-queue using the add method. The add method accepts single items, multiple items
-or an array of items.
+Note: The constant LEXICAL_RULES is a set of rules used to define the tokens
+extracted by the lexical analyzer. As such it is not discussed further here.
+See that gem for more details on how rules are constructed.
 
 #### Getting a queued item:
 

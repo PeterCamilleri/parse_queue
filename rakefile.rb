@@ -9,6 +9,11 @@ end
 
 task :default => :test
 
+desc "Run a scan for smelly code!"
+task :reek do |t|
+  `reek --no-color lib > reek.txt`
+end
+
 desc "What version of parse queue is this?"
 task :vers do |t|
   puts

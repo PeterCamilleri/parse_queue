@@ -1,0 +1,5 @@
+lib/parse_queue.rb -- 3 warnings:
+  [17]:ControlParameter: ParseQueue#initialize is controlled by argument 'fetch' [https://github.com/troessner/reek/blob/v5.0.2/docs/Control-Parameter.md]
+  [7]:IrresponsibleModule: ParseQueue has no descriptive comment [https://github.com/troessner/reek/blob/v5.0.2/docs/Irresponsible-Module.md]
+  [33]:TooManyStatements: ParseQueue#get has approx 7 statements [https://github.com/troessner/reek/blob/v5.0.2/docs/Too-Many-Statements.md]
+3 total warnings

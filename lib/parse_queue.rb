@@ -32,16 +32,7 @@ class ParseQueue
 
   # Get an item from the buffer.
   def get
-    if @position == index_limit
-      item = @fetch.call
-
-      unless item
-        @fetch = DFB
-        fail ParseQueueNoFwd
-      end
-
-      @buffer << item
-    end
+    @buffer << fetch_one if @position == index_limit
 
     result = @buffer[rev_count]
     @position += 1
@@ -105,4 +96,17 @@ private
   def index_limit
     @buffer.length + @offset
   end
+
+  # Fetch a single item.
+  def fetch_one
+    item = @fetch.call
+
+    unless item
+      @fetch = DFB
+      fail ParseQueueNoFwd
+    end
+
+    item
+  end
+
 end

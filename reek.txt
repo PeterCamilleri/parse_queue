@@ -1,3 +1,1 @@
-lib/parse_queue.rb -- 1 warning:
-  [34]:TooManyStatements: ParseQueue#get has approx 7 statements [https://github.com/troessner/reek/blob/v5.0.2/docs/Too-Many-Statements.md]
-1 total warning
+0 total warnings

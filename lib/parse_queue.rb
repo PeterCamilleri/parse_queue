@@ -14,7 +14,7 @@ class ParseQueue
 
   # Set up the parser queue.
   def initialize(&fetch)
-    @fetch  = fetch || DFB
+    @fetch  = fetch
     @buffer = []
     @offset = @position = 0
   end

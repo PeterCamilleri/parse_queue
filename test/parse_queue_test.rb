@@ -215,8 +215,9 @@ class ParseQueueTest < Minitest::Test
   end
 
   def test_that_it_detects_errors
-    assert_raises(ParseQueueNoFwd) { ParseQueue.new.get }
-    assert_raises(ParseQueueNoRev) { ParseQueue.new.unget }
+    pq = ParseQueue.new { false }
+    assert_raises(ParseQueueNoFwd) { pq.get }
+    assert_raises(ParseQueueNoRev) { pq.unget }
 
     pq = prep_queue
 

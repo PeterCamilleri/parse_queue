@@ -4,6 +4,7 @@
 require_relative "parse_queue/exceptions"
 require_relative "parse_queue/version"
 
+# The RCTP queue for parser token flow with backtracking.
 class ParseQueue
 
   # The current read point of the queue.

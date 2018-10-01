@@ -7,6 +7,12 @@ simple queue, it supports backing up or falling back to earlier states allowing
 the parser to try other paths in the syntax tree when one path runs into a
 dead end.
 
+The parse queue was created to simplify the design of both the lexical analyzer
+and the parser. Parsers often have a built-in limited "look-ahead" of tokens.
+This can be seen in parser names like LL(0), LL(1), LR(1), LALR(n), etc. The
+parse queue provides for a flexible look-ahead removing this burden from other
+compiler components.
+
 ## Installation
 
 Add this line to your application's Gemfile:

@@ -39,6 +39,13 @@ class ParseQueue
     result
   end
 
+  # Get an item and shift the buffer.
+  def get!
+    result = get
+    shift
+    result
+  end
+
   # Fetch all possible items.
   def fetch_all
     loop do

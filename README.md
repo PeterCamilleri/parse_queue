@@ -66,6 +66,12 @@ Getting an item from the queue is done with the get method. For example:
 This method returns the next unread item from the queue. Note that if no items
 are available, the exception **ParseQueueNoFwd** is raised.
 
+Note: The get! method is a get without backtracking. In effect it is a get
+followed by a shift (see Shifting below).
+
+```ruby
+  item = pq.get!
+```
 
 #### Backtracking:
 

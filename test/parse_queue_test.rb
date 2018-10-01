@@ -52,6 +52,27 @@ class ParseQueueTest < Minitest::Test
     assert_equal(3, pq.position)
   end
 
+  def test_get_with_a_bang
+    pq = prep_queue
+    assert_equal(0, pq.fwd_count)
+    assert_equal(0, pq.rev_count)
+
+    assert_equal(1, pq.get!)
+    assert_equal(0, pq.fwd_count)
+    assert_equal(0, pq.rev_count)
+    assert_equal(1, pq.position)
+
+    assert_equal(2, pq.get!)
+    assert_equal(0, pq.fwd_count)
+    assert_equal(0, pq.rev_count)
+    assert_equal(2, pq.position)
+
+    assert_equal(3, pq.get!)
+    assert_equal(0, pq.fwd_count)
+    assert_equal(0, pq.rev_count)
+    assert_equal(3, pq.position)
+  end
+
   def test_that_we_can_fetch_all
     pq = prep_queue
     pq.fetch_all

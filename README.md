@@ -13,6 +13,10 @@ This can be seen in parser names like LL(0), LL(1), LR(1), LALR(n), etc. The
 parse queue provides for a flexible look-ahead removing this burden from other
 compiler components.
 
+The operation of the parse queue is summarized in the following diagram:
+
+![parse queue](./images/queue.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:

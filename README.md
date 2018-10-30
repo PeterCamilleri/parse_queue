@@ -108,7 +108,7 @@ a value saved off at an earlier point of the processing. For example:
 
 #### Shifting
 
-So far, items have been retained in the queue, even when are done being
+So far, items have been retained in the queue, even after they are done being
 processed. For large files, this may use a large amount of memory. To avoid
 this, used items need to be shifted out of the parse queue. This can be done as
 follows:
@@ -122,9 +122,9 @@ follows:
   }
 ```
 Note how the try! block returns a value called success. If this value is false
-or nil, the parse queue is rolled back to its condition at the start of the try
-block. Otherwise, any changes to the parse queue are retained and processed
-items are removed.
+or nil, the parse queue is rolled back to its condition at the start of the
+try! block. Otherwise, any changes to the parse queue are retained and
+processed items are removed.
 
 This too can be done manually as shown below:
 
@@ -141,6 +141,16 @@ This too can be done manually as shown below:
 ```
 Note that if an attempt is made to fall back to data that has been shifted out,
 a **ParseQueueNoRev** exception is raised.
+
+#### Exceptions
+
+The parse queue uses the following exception classes:
+
+    Exception              # From Ruby.
+      StandardError        # From Ruby.
+        ParseQueueError    # The abstract root of parse queue exceptions.
+          ParseQueueNoFwd  # Error: Can't go forward.
+          ParseQueueNoRev  # Error: Can't fall back.
 
 ## Contributing
 
